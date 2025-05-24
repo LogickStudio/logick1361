@@ -23,6 +23,9 @@ class FreshCartApp {
       this.updateCartCount();
       this.setupNotificationSystem();
       
+      // Initialize router now that all components are loaded
+      router.init();
+      
       // Hide loading overlay
       setTimeout(() => {
         const loadingOverlay = document.getElementById('loading-overlay');
@@ -244,6 +247,22 @@ class FreshCartApp {
     }
     
     this.showError(userMessage);
+  }
+  
+  // Show fallback content if router fails
+  showFallbackContent() {
+    const mainContent = document.getElementById('main-content');
+    if (mainContent) {
+      mainContent.innerHTML = `
+        <div style="padding: 2rem; text-align: center;">
+          <h1>🛒 FreshCart</h1>
+          <p>Welcome to FreshCart! We're having some technical difficulties.</p>
+          <button onclick="window.location.reload()" style="padding: 10px 20px; background: #ff6b35; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Reload Page
+          </button>
+        </div>
+      `;
+    }
   }
 }
 

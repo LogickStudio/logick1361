@@ -380,9 +380,4 @@ const router = new Router();
 // Export for use in other modules
 window.router = router;
 
-// Initialize router when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => router.init());
-} else {
-  router.init();
-}
+// Router initialization moved to app.js to ensure components are loaded first
